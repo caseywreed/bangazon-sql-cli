@@ -37,13 +37,8 @@ namespace Bangazon.Actions
 
 			customer.save ();
 
-			CustomerFactory f = new CustomerFactory ();
-			List<Customer> customers = f.getAll ();
-
-			foreach (Customer c in customers) {
-				Console.WriteLine ("{0} {1}", c.FirstName, c.LastName);
-			}
-
+			Console.WriteLine ("{0} {1} added. Press any key to continue.", customer.FirstName, customer.LastName);
+			Console.ReadLine ();
 
 		}
 	}

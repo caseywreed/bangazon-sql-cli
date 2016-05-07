@@ -14,6 +14,12 @@ namespace Bangazon.Menu
 		};
 
 		private Dictionary<int, MenuItem> _MenuItems = new Dictionary<int, MenuItem>();
+		private bool done = false;
+
+		private void MarkDone()
+		{
+			done = true;
+		}
 
 		public MenuSystem()
 		{
@@ -26,7 +32,16 @@ namespace Bangazon.Menu
 				prompt = "Create a payment option",
 				Action = CreatePaymentOptionAction.ReadInput
 			});
+					
+			_MenuItems.Add (3, new MenuItem (){
+				prompt = "Order product",
+				Action = OrderProductAction.ReadInput
+			});
 
+			_MenuItems.Add (4, new MenuItem (){
+				prompt = "Leave Bangazon!",
+				Action = MarkDone
+			});
 
 
 //			_MenuItems.Add (3, "Order a product");
@@ -35,8 +50,21 @@ namespace Bangazon.Menu
 //			_MenuItems.Add (6, "Leave Bangazon!");
 		}
 
+		public void Start()
+		{
+			Console.BackgroundColor = ConsoleColor.DarkGreen;
+			Console.ForegroundColor = ConsoleColor.Black;
+
+			while (!done) 
+			{
+				ShowMainMenu ();
+			}
+		}
+
 		public void ShowMainMenu ()
 		{
+			Console.Clear ();
+
 			string border = "*********************************************************";
 			StringBuilder mainMenu = new StringBuilder ();
 			mainMenu.AppendLine ("\n");
@@ -48,7 +76,6 @@ namespace Bangazon.Menu
 				mainMenu.AppendLine (string.Format("{0}. {1}", item.Key, item.Value.prompt));
 			}
 
-			Console.Clear ();
 			Console.WriteLine (mainMenu);
 			Console.Write ("> ");
 

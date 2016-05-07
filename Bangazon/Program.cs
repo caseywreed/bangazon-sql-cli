@@ -9,7 +9,7 @@ namespace Bangazon
 		public static void Main (string[] args)
 		{
 			MenuSystem menu = new MenuSystem ();
-			menu.ShowMainMenu ();
+			menu.Start ();
 		}
 	}
 }
