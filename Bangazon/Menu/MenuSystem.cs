@@ -21,7 +21,14 @@ namespace Bangazon.Menu
 				prompt = "Create an account",
 				Action = CreateCustomerAction.ReadInput
 			});
-//			_MenuItems.Add (2, "Create a payment option");
+
+			_MenuItems.Add (2, new MenuItem (){
+				prompt = "Create a payment option",
+				Action = CreatePaymentOptionAction.ReadInput
+			});
+
+
+
 //			_MenuItems.Add (3, "Order a product");
 //			_MenuItems.Add (4, "Complete an order");
 //			_MenuItems.Add (5, "See product popularity");
@@ -32,17 +39,16 @@ namespace Bangazon.Menu
 		{
 			string border = "*********************************************************";
 			StringBuilder mainMenu = new StringBuilder ();
-			mainMenu.AppendLine ("\n\n\n");
+			mainMenu.AppendLine ("\n");
 			mainMenu.AppendLine (border);
 			mainMenu.AppendLine ("**  Welcome to Bangazon! Command Line Ordering System  **");
 			mainMenu.AppendLine (border);
 
 			foreach (KeyValuePair<int, MenuItem> item in _MenuItems) {
-				mainMenu.Append (item.Key);
-				mainMenu.Append (". ");
-				mainMenu.AppendLine (item.Value.prompt);
+				mainMenu.AppendLine (string.Format("{0}. {1}", item.Key, item.Value.prompt));
 			}
 
+			Console.Clear ();
 			Console.WriteLine (mainMenu);
 			Console.Write ("> ");
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bangazon.Actions
 {
@@ -11,11 +12,11 @@ namespace Bangazon.Actions
 		public static void ReadInput() {
 			Customer customer = new Customer();
 
-			Console.WriteLine ("Enter customer name");
-			string name = Console.ReadLine ();
-			char[] del = { ' ' };
-			customer.FirstName = name.Split (del)[0];
-			customer.LastName = name.Split (del)[1];
+			Console.WriteLine ("Enter customer first name");
+			customer.FirstName = Console.ReadLine();
+
+			Console.WriteLine ("Enter customer last name");
+			customer.LastName = Console.ReadLine();
 
 			Console.WriteLine ("Enter street address");
 			customer.StreetAddress = Console.ReadLine ();
@@ -33,6 +34,15 @@ namespace Bangazon.Actions
 			customer.PhoneNumber = Console.ReadLine ();
 
 			Console.WriteLine (customer.ToString ());
+
+			customer.save ();
+
+			CustomerFactory f = new CustomerFactory ();
+			List<Customer> customers = f.getAll ();
+
+			foreach (Customer c in customers) {
+				Console.WriteLine ("{0} {1}", c.FirstName, c.LastName);
+			}
 
 
 		}

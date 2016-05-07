@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -43,11 +44,15 @@
     <Compile Include="Entities\PaymentOption.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Actions\CreateCustomerAction.cs" />
+    <Compile Include="Actions\CreatePaymentOptionAction.cs" />
+    <Compile Include="Factories\CustomerFactory.cs" />
+    <Compile Include="BangazonConnection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Menu\" />
     <Folder Include="Entities\" />
     <Folder Include="Actions\" />
+    <Folder Include="Factories\" />
   </ItemGroup>
 </Project>
