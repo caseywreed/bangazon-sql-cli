@@ -9,7 +9,7 @@ namespace Bangazon.Actions
 		}
 
 		public static void ReadInput() {
-			var factory = new CustomerFactory();
+			CustomerFactory factory = CustomerFactory.Instance;
 			var customers = factory.getAll ();
 
 			Console.WriteLine ("Select a customer");
@@ -18,7 +18,8 @@ namespace Bangazon.Actions
 			}
 
 			Console.Write ("> ");
-			int choice = Int32.Parse (Console.ReadLine ());
+
+			//int choice = Int32.Parse (Console.ReadLine ());
 
 		}
 	}

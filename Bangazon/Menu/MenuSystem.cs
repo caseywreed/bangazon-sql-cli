@@ -14,6 +14,7 @@ namespace Bangazon.Menu
 		};
 
 		private Dictionary<int, MenuItem> _MenuItems = new Dictionary<int, MenuItem>();
+		private CustomerFactory factory = CustomerFactory.Instance;
 		private bool done = false;
 
 		private void MarkDone()
@@ -29,16 +30,21 @@ namespace Bangazon.Menu
 			});
 
 			_MenuItems.Add (2, new MenuItem (){
+				prompt = "Choose active customer",
+				Action = ChooseActiveCustomerAction.ReadInput
+			});
+
+			_MenuItems.Add (3, new MenuItem (){
 				prompt = "Create a payment option",
 				Action = CreatePaymentOptionAction.ReadInput
 			});
 					
-			_MenuItems.Add (3, new MenuItem (){
+			_MenuItems.Add (4, new MenuItem (){
 				prompt = "Order product",
 				Action = OrderProductAction.ReadInput
 			});
 
-			_MenuItems.Add (4, new MenuItem (){
+			_MenuItems.Add (5, new MenuItem (){
 				prompt = "Leave Bangazon!",
 				Action = MarkDone
 			});
@@ -71,6 +77,13 @@ namespace Bangazon.Menu
 			mainMenu.AppendLine (border);
 			mainMenu.AppendLine ("**  Welcome to Bangazon! Command Line Ordering System  **");
 			mainMenu.AppendLine (border);
+
+			if (factory.ActiveCustomer != null) {
+				Customer c = factory.ActiveCustomer;
+				mainMenu.AppendLine (string.Format( "\n  >>> Welcome {0} {1}\n", c.FirstName, c.LastName));
+			}
+
+
 
 			foreach (KeyValuePair<int, MenuItem> item in _MenuItems) {
 				mainMenu.AppendLine (string.Format("{0}. {1}", item.Key, item.Value.prompt));

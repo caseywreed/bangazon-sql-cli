@@ -8,6 +8,7 @@ namespace Bangazon
 	{
 		public static void Main (string[] args)
 		{
+			CustomerFactory factory = CustomerFactory.Instance;
 			MenuSystem menu = new MenuSystem ();
 			menu.Start ();
 		}

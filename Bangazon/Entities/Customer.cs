@@ -25,7 +25,6 @@ namespace Bangazon
 
 		public void save()
 		{
-			Console.WriteLine("Customer.save()");
 			string query = string.Format(@"
 			insert into Customer 
 			  (FirstName, LastName, StreetAddress, City, StateProvince, PostalCode, PhoneNumber)

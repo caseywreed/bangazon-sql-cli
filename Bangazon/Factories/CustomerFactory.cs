@@ -6,16 +6,38 @@ namespace Bangazon
 {
 	public class CustomerFactory
 	{
-		public CustomerFactory ()
+		// Make the factory a singleton to maintain state across all uses
+		private static CustomerFactory _instance;
+		public static CustomerFactory Instance
 		{
+			get {
+				if (_instance == null) {
+					_instance = new CustomerFactory ();
+				}
+				return _instance;
+			}
 		}
 
+		// To track the currently active customer - selected by user
+		private Customer _activeCustomer = null;
+		public Customer ActiveCustomer {
+			get {
+				return _activeCustomer;
+			}
+			set{ 
+				_activeCustomer = value;
+			}
+		}
+
+		// Get a single customer
 		public Customer get(int IdCustomer)
 		{
 			BangazonConnection conn = new BangazonConnection ();
 			Customer c = null;
 
-			conn.execute (@"select FirstName, 
+			conn.execute (@"select 
+				IdCustomer,
+				FirstName, 
 				LastName, 
 				StreetAddress, 
 				City, 
@@ -27,13 +49,14 @@ namespace Bangazon
 				while (reader.Read ())
 				{
 					c = new Customer {
-						FirstName = reader [0].ToString(),
-						LastName = reader [1].ToString(),
-						StreetAddress = reader [2].ToString(),
-						City = reader [3].ToString(),
-						StateProvince = reader [4].ToString(),
-						PostalCode = reader [5].ToString(),
-						PhoneNumber = reader [6].ToString()
+						id = reader.GetInt32(0),
+						FirstName = reader [1].ToString(),
+						LastName = reader [2].ToString(),
+						StreetAddress = reader [3].ToString(),
+						City = reader [4].ToString(),
+						StateProvince = reader [5].ToString(),
+						PostalCode = reader [6].ToString(),
+						PhoneNumber = reader [7].ToString()
 					};
 				}
 			});
@@ -42,15 +65,16 @@ namespace Bangazon
 			return c;
 		}
 
-
-
+		// Get all customers
 		public List<Customer> getAll() 
 		{
 			BangazonConnection conn = new BangazonConnection ();
 			List<Customer> list = new List<Customer> ();
 
 			// Execute the query to retrieve all customers
-			conn.execute (@"select FirstName, 
+			conn.execute (@"select 
+				IdCustomer,
+				FirstName,  
 				LastName, 
 				StreetAddress, 
 				City, 
@@ -62,13 +86,14 @@ namespace Bangazon
 					while (reader.Read ())
 					{
 						list.Add(new Customer {
-							FirstName = reader [0].ToString(),
-							LastName = reader [1].ToString(),
-							StreetAddress = reader [2].ToString(),
-							City = reader [3].ToString(),
-							StateProvince = reader [4].ToString(),
-							PostalCode = reader [5].ToString(),
-							PhoneNumber = reader [6].ToString()
+							id = reader.GetInt32(0),
+							FirstName = reader [1].ToString(),
+							LastName = reader [2].ToString(),
+							StreetAddress = reader [3].ToString(),
+							City = reader [4].ToString(),
+							StateProvince = reader [5].ToString(),
+							PostalCode = reader [6].ToString(),
+							PhoneNumber = reader [7].ToString()
 						});
 					}
 				}

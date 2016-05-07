@@ -10,7 +10,6 @@ namespace Bangazon
 
 		public void insert(string query)
 		{
-			Console.WriteLine("BangazonConnection.insert()");
 			System.Data.IDbConnection dbcon = new SqliteConnection (_connectionString);
 
 			dbcon.Open ();
