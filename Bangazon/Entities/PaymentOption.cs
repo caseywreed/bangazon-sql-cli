@@ -12,6 +12,23 @@ namespace Bangazon
 		public PaymentOption ()
 		{
 		}
+
+		public void save()
+		{
+			string query = string.Format(@"
+			insert into PaymentOption 
+			  (IdCustomer, Name, AccountNumber)
+			values 
+			  ('{0}', '{1}', '{2}');
+			", 
+				this.IdCustomer,
+				this.Name,
+				this.AccountNumber
+			);
+
+			BangazonConnection conn = new BangazonConnection ();
+			conn.insert (query);
+		}
 	}
 }
 

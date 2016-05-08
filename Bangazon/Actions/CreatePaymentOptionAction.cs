@@ -10,17 +10,27 @@ namespace Bangazon.Actions
 
 		public static void ReadInput() {
 			CustomerFactory factory = CustomerFactory.Instance;
-			var customers = factory.getAll ();
+			Customer c = factory.ActiveCustomer;
+			PaymentOption opt = new PaymentOption ();
 
-			Console.WriteLine ("Select a customer");
-			foreach (Customer c in customers) {
-				Console.WriteLine ("{0}. {1} {2}", c.id, c.FirstName, c.LastName);
+			if (c == null) {
+				Console.WriteLine ("There must be an active customer first. Press any key to return to main menu.");
+			} else {
+				Console.WriteLine ("Enter payment type (e.g. AmEx, Visa, Checking)");
+				Console.Write ("> ");
+				opt.Name = Console.ReadLine ();
+
+				Console.WriteLine ("Enter account number");
+				Console.Write ("> ");
+				opt.AccountNumber = Console.ReadLine ();
+
+				opt.IdCustomer = c.id;
+				opt.save ();
+
+				Console.WriteLine ("Payment option added. Press any key to return to main menu.");
 			}
 
-			Console.Write ("> ");
-
-			//int choice = Int32.Parse (Console.ReadLine ());
-
+			Console.ReadLine ();
 		}
 	}
 }

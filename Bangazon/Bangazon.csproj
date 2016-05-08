@@ -47,8 +47,9 @@
     <Compile Include="Actions\CreatePaymentOptionAction.cs" />
     <Compile Include="Factories\CustomerFactory.cs" />
     <Compile Include="BangazonConnection.cs" />
-    <Compile Include="Actions\OrderproductAction.cs" />
     <Compile Include="Actions\ChooseActiveCustomerAction.cs" />
+    <Compile Include="Factories\ProductFactory.cs" />
+    <Compile Include="Actions\OrderProductAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

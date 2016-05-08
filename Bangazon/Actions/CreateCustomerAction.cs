@@ -37,7 +37,7 @@ namespace Bangazon.Actions
 
 			customer.save ();
 
-			Console.WriteLine ("{0} {1} added. Press any key to continue.", customer.FirstName, customer.LastName);
+			Console.WriteLine ("{0} {1} added. Press any key to return to main menu.", customer.FirstName, customer.LastName);
 			Console.ReadLine ();
 
 		}

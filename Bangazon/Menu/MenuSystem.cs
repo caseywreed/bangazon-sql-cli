@@ -7,16 +7,24 @@ namespace Bangazon.Menu
 {
 	public class MenuSystem
 	{
+		// Representation of each item that will be displayed in the main menu of choices
 		private struct MenuItem {
 			public string prompt;
 			public delegate void MenuAction ();
 			public MenuAction Action;
 		};
 
+		// A collection for storing the menu items
 		private Dictionary<int, MenuItem> _MenuItems = new Dictionary<int, MenuItem>();
-		private CustomerFactory factory = CustomerFactory.Instance;
+
+		// Get the customer factory instance
+		private CustomerFactory customerFactory = CustomerFactory.Instance;
+		private ProductFactory productFactory = ProductFactory.Instance;
+
+		// Simple boolean to check whether to keep displaying the main menu
 		private bool done = false;
 
+		// To signal that the user is done with Bangazon
 		private void MarkDone()
 		{
 			done = true;
@@ -40,7 +48,7 @@ namespace Bangazon.Menu
 			});
 					
 			_MenuItems.Add (4, new MenuItem (){
-				prompt = "Order product",
+				prompt = "Add product to shopping cart",
 				Action = OrderProductAction.ReadInput
 			});
 
@@ -67,6 +75,7 @@ namespace Bangazon.Menu
 			}
 		}
 
+		// Display the main menu of choices for Bangazon
 		public void ShowMainMenu ()
 		{
 			Console.Clear ();
@@ -78,13 +87,26 @@ namespace Bangazon.Menu
 			mainMenu.AppendLine ("**  Welcome to Bangazon! Command Line Ordering System  **");
 			mainMenu.AppendLine (border);
 
-			if (factory.ActiveCustomer != null) {
-				Customer c = factory.ActiveCustomer;
-				mainMenu.AppendLine (string.Format( "\n  >>> Welcome {0} {1}\n", c.FirstName, c.LastName));
+			// If there is an active customer, display a prompt welcoming them
+			if (customerFactory.ActiveCustomer != null) {
+				Customer c = customerFactory.ActiveCustomer;
+				mainMenu.AppendLine (string.Format( "\n >>> Welcome {0} {1}\n", c.FirstName, c.LastName));
+
+				// Show items in the shopping cart, if some exist
+				if (productFactory.ShoppingCart.Count > 0) {
+					StringBuilder bag = new StringBuilder ();
+					bag.Append("     Products in your shopping cart: ");
+					foreach (Product p in productFactory.ShoppingCart) {
+						bag.Append (string.Format ("{0},", p.Name));
+					}
+					bag.Remove (bag.Length - 1, 1);
+					mainMenu.AppendLine (bag.ToString());
+					mainMenu.AppendLine ("");
+				}
+
 			}
 
-
-
+			// Display each menu item
 			foreach (KeyValuePair<int, MenuItem> item in _MenuItems) {
 				mainMenu.AppendLine (string.Format("{0}. {1}", item.Key, item.Value.prompt));
 			}
