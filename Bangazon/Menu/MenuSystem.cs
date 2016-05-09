@@ -53,15 +53,14 @@ namespace Bangazon.Menu
 			});
 
 			_MenuItems.Add (5, new MenuItem (){
+				prompt = "Complete order",
+				Action = CompleteOrderAction.ReadInput
+			});
+
+			_MenuItems.Add (6, new MenuItem (){
 				prompt = "Leave Bangazon!",
 				Action = MarkDone
 			});
-
-
-//			_MenuItems.Add (3, "Order a product");
-//			_MenuItems.Add (4, "Complete an order");
-//			_MenuItems.Add (5, "See product popularity");
-//			_MenuItems.Add (6, "Leave Bangazon!");
 		}
 
 		public void Start()

@@ -11,13 +11,9 @@ namespace Bangazon
 		}
 
 		public static void ReadInput() {
+			Customer currentCustomer = CustomerFactory.Instance.ActiveCustomer;
+			List<Product> products = ProductFactory.Instance.getAll ();
 			bool DoneOrdering = false;
-
-			CustomerFactory faktory = CustomerFactory.Instance;
-			Customer currentCustomer = faktory.ActiveCustomer;
-
-			ProductFactory factory = ProductFactory.Instance;
-			List<Product> products = factory.getAll ();
 
 			if (currentCustomer == null) {
 				Console.WriteLine ("There must be an active customer first. Press any key to return to main menu.");
@@ -34,7 +30,7 @@ namespace Bangazon
 					int choice = Int32.Parse (Console.ReadLine ());
 
 					if (choice != products.Count + 1) {
-						factory.ShoppingCart.Add (products.Find (c => c.IdProduct == choice));
+						ProductFactory.Instance.ShoppingCart.Add (products.Find (c => c.IdProduct == choice));
 					} else {
 						DoneOrdering = true;
 					}

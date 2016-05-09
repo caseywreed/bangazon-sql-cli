@@ -50,6 +50,7 @@
     <Compile Include="Actions\ChooseActiveCustomerAction.cs" />
     <Compile Include="Factories\ProductFactory.cs" />
     <Compile Include="Actions\OrderProductAction.cs" />
+    <Compile Include="Actions\CompleteOrderAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
