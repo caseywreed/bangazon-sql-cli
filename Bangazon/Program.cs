@@ -1,5 +1,4 @@
 ﻿using System;
-using Mono.Data.Sqlite;
 using Bangazon.Menu;
 
 namespace Bangazon

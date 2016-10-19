@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
+using Microsoft.Data.Sqlite;
 
 namespace Bangazon
 {
@@ -45,7 +44,7 @@ namespace Bangazon
 				PostalCode, 
 				PhoneNumber 
 				from customers
-				where IdCustomer = " + IdCustomer, (IDataReader reader) => {
+				where IdCustomer = " + IdCustomer, (SqliteDataReader reader) => {
 				while (reader.Read ())
 				{
 					c = new Customer {
@@ -82,7 +81,7 @@ namespace Bangazon
 				PostalCode, 
 				PhoneNumber 
 				from customer", 
-				(IDataReader reader) => {
+				(SqliteDataReader reader) => {
 					while (reader.Read ())
 					{
 						list.Add(new Customer {

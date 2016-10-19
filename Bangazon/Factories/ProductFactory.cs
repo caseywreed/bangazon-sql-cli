@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using Microsoft.Data.Sqlite;
 
 namespace Bangazon
 {
@@ -35,7 +35,7 @@ namespace Bangazon
 				Price, 
 				IdProductType 
 				from Product", 
-				(IDataReader reader) => {
+				(SqliteDataReader reader) => {
 					while (reader.Read ())
 					{
 						list.Add(new Product {

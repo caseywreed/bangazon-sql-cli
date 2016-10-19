@@ -5,10 +5,6 @@ namespace Bangazon
 {
 	public class ChooseActiveCustomerAction
 	{
-		public ChooseActiveCustomerAction ()
-		{
-		}
-
 		public static void ReadInput() {
 			CustomerFactory factory = CustomerFactory.Instance;
 			List<Customer> customers = factory.getAll ();
