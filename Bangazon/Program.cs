@@ -1,5 +1,4 @@
-﻿using System;
-using Bangazon.Menu;
+﻿using Bangazon.Menu;
 
 namespace Bangazon
 {

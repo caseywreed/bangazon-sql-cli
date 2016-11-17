@@ -5,7 +5,7 @@ namespace Bangazon
 {
 	public class BangazonConnection
 	{
-		private string _connectionString = "Data Source=/Users/stevebrownlee/dev/github/stevebrownlee/test/bangazon/Bangazon/bangazon.db";
+		private string _connectionString = "Data Source=/Users/stevebrownlee/dev/github/stevebrownlee/bangazon/bangazon-sql-cli/Bangazon/bangazon.db";
 
 		public void insert(string query)
 		{
